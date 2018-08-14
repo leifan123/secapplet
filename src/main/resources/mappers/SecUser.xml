@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sec.dao.SecUserDao">
+
+	<resultMap id="SecUserMap" type="com.sec.pojo.SecUser">
+		<id property="id" column="Id"/>
+		<result property="code" column="code"/>
+		<result property="username" column="username"/>
+		<result property="phonenumber" column="phoneNumber"/>
+		<result property="password" column="password"/>
+		<result property="userphotos" column="userPhotos"/>
+		<result property="birthday" column="birthday"/>
+		<result property="graduateshool" column="graduateShool"/>
+		<result property="workplace" column="workplace"/>
+		<result property="identitycard" column="identityCard"/>
+		<result property="type" column="type"/>
+		<result property="status" column="status"/>
+		<result property="createtime" column="createTime"/>
+		<result property="remark" column="remark"/>
+	</resultMap>
+
+	<insert id="insert"  useGeneratedKeys="true" keyProperty="id"  parameterType="com.sec.pojo.SecUser">
+		insert into  sec_user (code,username,phoneNumber,password,userPhotos,birthday,graduateShool,workplace,identityCard,type,status,createTime,remark) values(#{code},#{username},#{phonenumber},#{password},#{userphotos},#{birthday},#{graduateshool},#{workplace},#{identitycard},#{type},#{status},#{createtime},#{remark})	
+	</insert>
+
+	<update id="update" parameterType="com.sec.pojo.SecUser">
+		update sec_user
+		<set>
+			<if test="code!=null">code = #{code},</if>
+			<if test="username!=null">username = #{username},</if>
+			<if test="phonenumber!=null">phoneNumber = #{phonenumber},</if>
+			<if test="password!=null">password = #{password},</if>
+			<if test="userphotos!=null">userPhotos = #{userphotos},</if>
+			<if test="birthday!=null">birthday = #{birthday},</if>
+			<if test="graduateshool!=null">graduateShool = #{graduateshool},</if>
+			<if test="workplace!=null">workplace = #{workplace},</if>
+			<if test="identitycard!=null">identityCard = #{identitycard},</if>
+			<if test="type!=null">type = #{type},</if>
+			<if test="status!=null">status = #{status},</if>
+			<if test="createtime!=null">createTime = #{createtime},</if>
+			<if test="remark!=null">remark = #{remark}</if>
+		</set>
+		where Id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="com.sec.pojo.SecUser">
+		delete from sec_user where 1=1
+			<if test="id != null"> and Id = #{id}</if>
+			<if test="code != null"> and code = #{code}</if>
+			<if test="username != null"> and username = #{username}</if>
+			<if test="phonenumber != null"> and phoneNumber = #{phonenumber}</if>
+			<if test="password != null"> and password = #{password}</if>
+			<if test="userphotos != null"> and userPhotos = #{userphotos}</if>
+			<if test="birthday != null"> and birthday = #{birthday}</if>
+			<if test="graduateshool != null"> and graduateShool = #{graduateshool}</if>
+			<if test="workplace != null"> and workplace = #{workplace}</if>
+			<if test="identitycard != null"> and identityCard = #{identitycard}</if>
+			<if test="type != null"> and type = #{type}</if>
+			<if test="status != null"> and status = #{status}</if>
+			<if test="createtime != null"> and createTime = #{createtime}</if>
+			<if test="remark != null"> and remark = #{remark}</if>
+	</delete>
+
+	<select id="select" resultMap="SecUserMap" parameterType="com.sec.pojo.SecUser">
+		select * from sec_user where 1 = 1
+			<if test="id != null"> and Id = #{id}</if>
+			<if test="code != null"> and code = #{code}</if>
+			<if test="username != null"> and username = #{username}</if>
+			<if test="phonenumber != null"> and phoneNumber = #{phonenumber}</if>
+			<if test="password != null"> and password = #{password}</if>
+			<if test="userphotos != null"> and userPhotos = #{userphotos}</if>
+			<if test="birthday != null"> and birthday = #{birthday}</if>
+			<if test="graduateshool != null"> and graduateShool = #{graduateshool}</if>
+			<if test="workplace != null"> and workplace = #{workplace}</if>
+			<if test="identitycard != null"> and identityCard = #{identitycard}</if>
+			<if test="type != null"> and type = #{type}</if>
+			<if test="status != null"> and status = #{status}</if>
+			<if test="createtime != null"> and createTime = #{createtime}</if>
+			<if test="remark != null"> and remark = #{remark}</if>
+	</select>
+
+	<select id="selectByParam" resultMap="SecUserMap" parameterType="java.util.Map">
+		select  <if test="field != null and field != ''"> ${field}</if>  <if test="field == null or field == ''"> * </if>     from sec_user <if test="param != null and param != ''">where ${param}</if>
+	</select>
+
+	<delete id="deleteByParam" parameterType="java.util.Map">
+		delete from sec_user  <if test="param != null and param != ''">where ${param}</if>
+	</delete>
+
+	<update id="updateByParam" parameterType="java.util.Map">
+		<if test="param != null and param !=''">update sec_user set ${param}</if>
+	</update>
+
+</mapper>
